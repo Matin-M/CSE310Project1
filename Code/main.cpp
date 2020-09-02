@@ -1,8 +1,14 @@
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    cout << "Hello, World!" << endl;
     //This is a comment!
     return 0;
     
 }
+
