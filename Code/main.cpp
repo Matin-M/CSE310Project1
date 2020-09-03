@@ -56,8 +56,23 @@ static string insertionSortEncode(string input)
         stringPointers[i] = &stringArray[i];
     }
 
+    //Sort pointer array:
+    int j;
+    int i;
+    string* key;
+    for (i = 1; i < n; i++)
+    {
+        key = stringPointers[i];
+        j = i - 1;
+        while (j >= 0 && (*stringPointers[j]).compare(*key) > 0)
+        {
+            stringPointers[j + 1] = stringPointers[j];
+            j = j - 1;
+        }
+        stringPointers[j + 1] = key;
+    }
+
     //debug
-    cout << "N is: "<< n << endl;
 
     for(int i = 0; i < n; i++){
         cout << *stringPointers[i] << endl;
