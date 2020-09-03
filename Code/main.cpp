@@ -11,21 +11,6 @@
 
 using namespace std;
 
-static string testingFunc(string input)
-{
-    string returnVal = "";
-    int n = input.length();
-    string* pointerArray[n];
-    pointerArray[0] = &returnVal;
-
-    string arrayString[3] = {"a","b","c"};
-    pointerArray[1] = arrayString;
-
-    string test = "sdf";
-    test[2] = 'a';
-
-    return *(pointerArray[1]+1);
-}
 
 static string insertionSortEncode(string input)
 {
