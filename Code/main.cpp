@@ -11,10 +11,14 @@
 
 using namespace std;
 
-
+/**
+ * Encode string using insertion sort method.
+ * @param input
+ * @return
+ */
 static string insertionSortEncode(string input)
 {
-    //Method declarations.
+    //variable declarations.
     string returnVal = "";
     int n = input.length();
     string stringArray[n];
