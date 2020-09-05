@@ -62,6 +62,7 @@ static string insertionSortEncode(string input)
         stringPointers[j + 1] = key;
     }
 
+    //Find position of original string in pointerArray.
     int originalIndex;
     for(int i = 0; i < n; i++)
     {
@@ -72,11 +73,38 @@ static string insertionSortEncode(string input)
         }
     }
 
-    cout << "Orignal Index: " << originalIndex << endl;
+    //Tally last row of string column and store into array.
+    //std::vector<int> freq;
+    int incrementor;
+    for(int i = 0; i < n; i++)
+    {
+        char last = (*stringPointers[i])[n-1];
+        incrementor = 0;
+        for(int j = i+1; j < n; j++)
+        {
+            if(last == (*stringPointers[j])[n-1])
+            {
+                incrementor++;
+            } else
+            {
+                break;
+            }
+        }
+        i+=incrementor;
+
+        //freq.append() incrementor+1;
+        cout << endl;
+        cout << incrementor+1 << " ";
+    }
+
+
     //debug
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < n; i++)
+    {
         cout << *stringPointers[i] << endl;
     }
+
+    cout << "Orignal Index: " << originalIndex << endl;
 
     return returnVal;
 }
