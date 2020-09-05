@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 using namespace std;
 
 /**
@@ -74,7 +73,7 @@ static string insertionSortEncode(string input)
     }
 
     //Tally last row of string column and store into array.
-    //std::vector<int> freq;
+    int freq[n];
     int incrementor;
     for(int i = 0; i < n; i++)
     {
@@ -92,7 +91,7 @@ static string insertionSortEncode(string input)
         }
         i+=incrementor;
 
-        //freq.append() incrementor+1;
+        freq[i] = incrementor+1;
         cout << endl;
         cout << incrementor+1 << " ";
     }
