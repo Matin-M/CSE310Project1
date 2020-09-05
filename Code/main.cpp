@@ -19,6 +19,7 @@ using namespace std;
 static string insertionSortEncode(string input)
 {
     //variable declarations.
+    string originalInput = input;
     string returnVal = "";
     int n = input.length();
     string stringArray[n];
@@ -61,8 +62,18 @@ static string insertionSortEncode(string input)
         stringPointers[j + 1] = key;
     }
 
-    //debug
+    int originalIndex;
+    for(int i = 0; i < n; i++)
+    {
+        if((*stringPointers[i]).compare(originalInput) == 0)
+        {
+            originalIndex = i;
+            break;
+        }
+    }
 
+    cout << "Orignal Index: " << originalIndex << endl;
+    //debug
     for(int i = 0; i < n; i++){
         cout << *stringPointers[i] << endl;
     }
