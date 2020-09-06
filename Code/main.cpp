@@ -23,6 +23,8 @@ static string insertionSortEncode(string input)
     int n = input.length();
     string stringArray[n];
 
+    cout << "The input was: " << originalInput;
+
     //Shift and store strings within StringArray.
     stringArray[0] = input;
     for(int i = 1; i < n; i++)
@@ -96,6 +98,7 @@ static string insertionSortEncode(string input)
         cout << incrementor+1 << " ";
     }
 
+    cout << endl << "Sorted Array Matrix: " << endl;
 
     //debug
     for(int i = 0; i < n; i++)
