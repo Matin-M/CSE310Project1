@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 using namespace std;
 
 /**
@@ -23,7 +24,7 @@ static string insertionSortEncode(string input)
     int n = input.length();
     string stringArray[n];
 
-    cout << "The input was: " << originalInput;
+    cout << "The original input was: " << originalInput;
 
     //Shift and store strings within StringArray.
     stringArray[0] = input;
@@ -74,8 +75,21 @@ static string insertionSortEncode(string input)
         }
     }
 
-    //Tally last row of string column and store into array.
+    //Create a string of only the last chars. Used for final output.
+    string lastChars = "";
+    for(int i = 0; i < n; i++)
+    {
+        lastChars += (*stringPointers[i])[n-1];
+    }
+
+    //Set every element in frequency to default value -1.
     int freq[n];
+    for(int i = 0; i < n; i++)
+    {
+        freq[i] = -1;
+    }
+
+    //Tally last row of string column and store into array.
     int incrementor;
     for(int i = 0; i < n; i++)
     {
@@ -108,13 +122,29 @@ static string insertionSortEncode(string input)
 
     cout << "Orignal Index: " << originalIndex << endl;
 
+    //returnVal = originalIndex + "\n";
+
+    cout << endl;
+
+    cout << endl;
+    string concat;
+    for(int i = 0; i < n; i++)
+    {
+        if (freq[i] != -1)
+        {
+            concat += to_string(freq[i])+" "+lastChars[i];
+        }
+    }
+
+    cout << endl << concat;
+
     return returnVal;
 }
 
 int main() {
     string input = "";
     cin >> input;
-    cout << "The output was: " <<  insertionSortEncode(input);
+    cout << "\nThe output was: " <<  insertionSortEncode(input);
     return 0;
 }
 
