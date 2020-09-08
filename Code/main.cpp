@@ -107,6 +107,7 @@ static string insertionSortEncode(string input)
         }
         i+=incrementor;
 
+        //Assign positions to incrementor.
         freq[i] = incrementor+1;
         cout << endl;
         cout << incrementor+1 << " ";
@@ -127,12 +128,14 @@ static string insertionSortEncode(string input)
     cout << endl;
 
     cout << endl;
+
+    //Concat results with return string returnVal.
     string concat;
     for(int i = 0; i < n; i++)
     {
         if (freq[i] != -1)
         {
-            concat += to_string(freq[i])+" "+lastChars[i];
+            concat += to_string(freq[i])+lastChars[i]+" ";
         }
     }
 
