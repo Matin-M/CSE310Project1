@@ -20,7 +20,6 @@ static string insertionSortEncode(string input)
 {
     //variable declarations.
     string originalInput = input;
-    string returnVal = "";
     int n = input.length();
     string stringArray[n];
 
@@ -123,14 +122,9 @@ static string insertionSortEncode(string input)
 
     cout << "Orignal Index: " << originalIndex << endl;
 
-    //returnVal = originalIndex + "\n";
-
-    cout << endl;
-
-    cout << endl;
 
     //Concat results with return string returnVal.
-    string concat;
+    string concat = "";
     for(int i = 0; i < n; i++)
     {
         if (freq[i] != -1)
@@ -138,16 +132,16 @@ static string insertionSortEncode(string input)
             concat += to_string(freq[i])+lastChars[i]+" ";
         }
     }
+    //Debug Check
+    //cout << "\nAll good here!";
 
-    cout << endl << concat;
-
-    return returnVal;
+    return to_string(originalIndex)+"\n"+concat;
 }
 
 int main() {
     string input = "";
     cin >> input;
-    cout << "\nThe output was: " <<  insertionSortEncode(input);
+    cout << insertionSortEncode(input);
     return 0;
 }
 
