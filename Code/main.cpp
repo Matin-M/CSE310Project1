@@ -132,8 +132,7 @@ static string insertionSortEncode(string input)
             concat += to_string(freq[i])+lastChars[i]+" ";
         }
     }
-    //Debug Check
-    //cout << "\nAll good here!";
+
 
     return to_string(originalIndex)+"\n"+concat;
 }
