@@ -122,14 +122,20 @@ static string insertionSortEncode(string input)
 
     cout << "Orignal Index: " << originalIndex << endl;
 
-
     //Concat results with return string returnVal.
     string concat = "";
     for(int i = 0; i < n; i++)
     {
         if (freq[i] != -1)
         {
-            concat += to_string(freq[i])+lastChars[i]+" ";
+            //Remove last space.
+            if ((freq[i] != -1) && (i == n-1))
+            {
+                concat += to_string(freq[i])+lastChars[i];
+            }else {
+                concat += to_string(freq[i])+lastChars[i]+" ";
+            }
+
         }
     }
 
