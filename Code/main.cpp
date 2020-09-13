@@ -1,8 +1,6 @@
 //
 // Created by Matin Massoudi on 9/2/20.
 //
-
-
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,8 +20,6 @@ static string insertionSortEncode(string input)
     string originalInput = input;
     int n = input.length();
     string stringArray[n];
-
-    cout << "The original input was: " << originalInput;
 
     //Shift and store strings within StringArray.
     stringArray[0] = input;
@@ -108,19 +104,10 @@ static string insertionSortEncode(string input)
 
         //Assign positions to incrementor.
         freq[i] = incrementor+1;
-        cout << endl;
-        cout << incrementor+1 << " ";
+
     }
 
-    cout << endl << "Sorted Array Matrix: " << endl;
 
-    //debug
-    for(int i = 0; i < n; i++)
-    {
-        cout << *stringPointers[i] << endl;
-    }
-
-    cout << "Orignal Index: " << originalIndex << endl;
 
     //Concat results with return string returnVal.
     string concat = "";
@@ -131,9 +118,9 @@ static string insertionSortEncode(string input)
             //Remove last space.
             if ((freq[i] != -1) && (i == n-1))
             {
-                concat += to_string(freq[i])+lastChars[i];
+                concat += to_string(freq[i])+" "+lastChars[i];
             }else {
-                concat += to_string(freq[i])+lastChars[i]+" ";
+                concat += to_string(freq[i])+" "+lastChars[i]+" ";
             }
 
         }
@@ -144,9 +131,11 @@ static string insertionSortEncode(string input)
 }
 
 int main() {
-    string input = "";
-    cin >> input;
-    cout << insertionSortEncode(input);
+    string input;
+    while (getline(cin, input)){
+        cout << insertionSortEncode(input) << endl;
+    }
+
     return 0;
 }
 
