@@ -14,10 +14,11 @@ using namespace std;
  * @param input
  * @return
  */
-static string insertionSortEncode(string input)
+static string insertionSortEncode(string inputString)
 {
     //variable declarations.
-    string originalInput = input;
+    string input = inputString;
+    string originalInput = inputString;
     int n = input.length();
     string stringArray[n];
 
@@ -130,11 +131,21 @@ static string insertionSortEncode(string input)
     return to_string(originalIndex)+"\n"+concat;
 }
 
-int main() {
-    string input;
-    while (getline(cin, input)){
-        cout << insertionSortEncode(input) << endl;
+int main(int argc, char** argv) {
+
+    //cout << "The encoding scheme is: " << argv[1] << endl;
+
+    string input = "";
+    while (!getline(cin, input).eof()){
+        if (input.length() != 0)
+        {
+            cout << insertionSortEncode(input) << endl;
+        }else
+        {
+            cout << endl;
+        }
     }
+
 
     return 0;
 }
