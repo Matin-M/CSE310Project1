@@ -6,17 +6,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <iostream>
+
 using namespace std;
 
 /**
- * Encode string using insertion sort method.
+ * Encode string using insertion sort algorithm.
  * @param input
  * @return
  */
 static string insertionSortEncode(string inputString)
 {
-    //variable declarations.
+    //variable declarations used for algorithm.
     string input = inputString;
     string originalInput = inputString;
     int n = input.length();
@@ -44,7 +44,7 @@ static string insertionSortEncode(string inputString)
         stringPointers[i] = &stringArray[i];
     }
 
-    //Sort pointer array:
+    //Sort pointer array using insertion sort.
     int j;
     int i;
     string* key;
@@ -52,6 +52,7 @@ static string insertionSortEncode(string inputString)
     {
         key = stringPointers[i];
         j = i - 1;
+        //Find and swap pointers within array of pointers.
         while (j >= 0 && (*stringPointers[j]).compare(*key) > 0)
         {
             stringPointers[j + 1] = stringPointers[j];
@@ -89,6 +90,8 @@ static string insertionSortEncode(string inputString)
     int incrementor;
     for(int i = 0; i < n; i++)
     {
+        //Find consecutive characters, and tally. Store tally result into an array, then move on
+        //To next char sequence.
         char last = (*stringPointers[i])[n-1];
         incrementor = 0;
         for(int j = i+1; j < n; j++)
@@ -108,8 +111,7 @@ static string insertionSortEncode(string inputString)
 
     }
 
-
-
+    //Concat stores result of decoded string.
     //Concat results with return string returnVal.
     string concat = "";
     for(int i = 0; i < n; i++)
@@ -127,14 +129,17 @@ static string insertionSortEncode(string inputString)
         }
     }
 
-
+    //Concatenate the index of original string with the decoded output, then return.
     return to_string(originalIndex)+"\n"+concat;
 }
 
 int main(int argc, char** argv) {
 
-    //cout << "The encoding scheme is: " << argv[1] << endl;
+    //Parsing parameters disabled for milestone 1.
+    //Code will accept "insertion/quick" arguments, however it does not impact as of right now.
+    //cout << "Encoding Type:" << argv[1] << endl;
 
+    //Display each line of encoded text.
     string input = "";
     while (!getline(cin, input).eof()){
         if (input.length() != 0)
@@ -145,7 +150,6 @@ int main(int argc, char** argv) {
             cout << endl;
         }
     }
-
 
     return 0;
 }
