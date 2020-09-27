@@ -133,6 +133,63 @@ static string insertionSortEncode(string inputString)
     return to_string(originalIndex)+"\n"+concat;
 }
 
+
+/**
+ * Swap function that takes two pointers and swaps their addresses.
+ * Used by partition function.
+ * @param a
+ * @param b
+ */
+void swap(string** a, string** b)
+{
+    string* t;
+    t = *a;
+    *a = *b;
+    *b = t;
+}
+
+/**
+ * Partition function used for quicksort.
+ * @param arr
+ * @param low
+ * @param high
+ * @return
+ */
+static int partition(string* arr[], int low, int high)
+{
+    //Select last element as the pivot.
+    string* pivot = arr[high];
+    int i = (low - 1);
+    //Increment j and swap when j is less than the pivot.
+    for (int j = low; j <= high - 1; j++)
+    {
+        if ((*arr[j]).compare(*pivot) < 0)
+        {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+/**
+ * Quicksort function that sorts an array of string pointers recursively.
+ * @param arr
+ * @param low
+ * @param high
+ */
+static void quickSort(string* arr[], int low, int high)
+{
+    if (low < high)
+    {
+        //Divide and recursive conquer step.
+        int part = partition(arr, low, high);
+        quickSort(arr, low, part - 1);
+        quickSort(arr, part + 1, high);
+    }
+}
+
 /**
  * Encode string using quicksort algorithm.
  * @param input
@@ -169,7 +226,7 @@ static string quickSortEncode(string inputString)
     }
 
     //Sort pointer array using quicksort.
-
+    quickSort(stringPointers, 0, n-1);
 
     //Find position of original string in pointerArray.
     int originalIndex;
@@ -243,21 +300,46 @@ static string quickSortEncode(string inputString)
     return to_string(originalIndex)+"\n"+concat;
 }
 
-int main(int argc, char** argv) {
 
-    cout << "Encoding Type:" << argv[1] << endl;
-    
-    //Display each line of encoded text.
-    string input = "";
-    while (!getline(cin, input).eof()){
-        if (input.length() != 0)
-        {
-            cout << insertionSortEncode(input) << endl;
-        }else
-        {
-            cout << endl;
+
+
+int main(int argc, char** argv)
+{
+    //Store insertion/quick argument in encodingType.
+    string encodingType = argv[1];
+
+    if(encodingType.compare("quick") == 0)
+    {
+        //Display each line of encoded text, using the insertion sort method.
+        string input = "";
+        while (!getline(cin, input).eof()){
+            if (input.length() != 0)
+            {
+                cout << quickSortEncode(input) << endl;
+            }else
+            {
+                cout << endl;
+            }
         }
+    }else if (encodingType.compare("insertion") == 0)
+    {
+        //Display each line of encoded text, using the quicksort method.
+        string input = "";
+        while (!getline(cin, input).eof()){
+            if (input.length() != 0)
+            {
+                cout << insertionSortEncode(input) << endl;
+            }else
+            {
+                cout << endl;
+            }
+        }
+    }else
+    {
+        cout << "Unknown encoding scheme!";
     }
+
+
 
     return 0;
 }
