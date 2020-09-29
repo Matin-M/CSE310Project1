@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 static string insertionSortDecode(string inputString, int index)
 {
     //variable declarations used for algorithm.
@@ -26,14 +27,46 @@ static string insertionSortDecode(string inputString, int index)
         }
     }
 
-    return last;
+    //Store last into an array for easier sorting.
+    int lastSize = last.size();
+    char lastArray[lastSize];
+    for (int i = 0; i < n; i++)
+    {
+        lastArray[i] = last[i];
+    }
+
+    //Sort last using insertion sort.
+    int j;
+    int i;
+    char key;
+    for (i = 1; i < lastSize; i++)
+    {
+        key = lastArray[i];
+        j = i - 1;
+        while (j >= 0 && (lastArray[j] > key))
+        {
+            lastArray[j + 1] = lastArray[j];
+            j = j - 1;
+        }
+        lastArray[j + 1] = key;
+    }
+
+    //Debug for sorted last column.
+    for (int i = 0; i < lastSize; i++)
+    {
+        cout << lastArray[i];
+    }
+
+    return "";
 }
 
-int main(int argc, char** argv)
+//UNCOMMENT BEFORE TESTING  AND SUBMISSION!!!
+//int main(int argc, char** argv)
+int main()
 {
-    string input = "";
-    getline(cin, input);
-    cout << insertionSortDecode(input,0);
+    string input = "1 d 1 n 1 c 3 a";
+    //getline(cin, input);
+    cout << endl << "insertion output: " << insertionSortDecode(input,0);
 
     //Input parsing disabled for current testing.
     //Store insertion/quick argument in encodingType.
