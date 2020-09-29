@@ -312,7 +312,7 @@ int main(int argc, char** argv)
     {
         //Display each line of encoded text, using the insertion sort method.
         string input = "";
-        while (!getline(cin, input).eof()){
+        while (getline(cin, input)){
             if (input.length() != 0)
             {
                 cout << quickSortEncode(input) << endl;
@@ -325,7 +325,7 @@ int main(int argc, char** argv)
     {
         //Display each line of encoded text, using the quicksort method.
         string input = "";
-        while (!getline(cin, input).eof()){
+        while (getline(cin, input)){
             if (input.length() != 0)
             {
                 cout << insertionSortEncode(input) << endl;
@@ -343,6 +343,5 @@ int main(int argc, char** argv)
 
     return 0;
 }
-
 
 
