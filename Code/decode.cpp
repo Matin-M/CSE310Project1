@@ -29,10 +29,10 @@ static string insertionSortDecode(string inputString, int index)
 
     //Store last into an array for easier sorting.
     int lastSize = last.size();
-    char lastArray[lastSize];
+    char firstArray[lastSize];
     for (int i = 0; i < n; i++)
     {
-        lastArray[i] = last[i];
+        firstArray[i] = last[i];
     }
 
     //Sort last using insertion sort.
@@ -41,23 +41,50 @@ static string insertionSortDecode(string inputString, int index)
     char key;
     for (i = 1; i < lastSize; i++)
     {
-        key = lastArray[i];
+        key = firstArray[i];
         j = i - 1;
-        while (j >= 0 && (lastArray[j] > key))
+        while (j >= 0 && (firstArray[j] > key))
         {
-            lastArray[j + 1] = lastArray[j];
+            firstArray[j + 1] = firstArray[j];
             j = j - 1;
         }
-        lastArray[j + 1] = key;
+        firstArray[j + 1] = key;
     }
 
-    //Debug for sorted last column.
+
+    //Declaring variables for next array computation.
+    int next[lastSize];
+    bool isUsed[lastSize];
+    //Init all values to true.
     for (int i = 0; i < lastSize; i++)
     {
-        cout << lastArray[i];
+        isUsed[i] = true;
     }
 
-    return "";
+    //Computing next array.
+    for (int i = 0; i < lastSize; i++)
+    {
+        char first = firstArray[i];
+        for (int j = 0; j < lastSize; j++)
+        {
+            if((first == last[j]) && isUsed[j])
+            {
+                next[i] = j;
+                isUsed[j] = false;
+                break;
+            }
+        }
+    }
+
+    //Debugging.
+    cout << endl;
+    for (int i = 0; i < lastSize; i++)
+    {
+        cout << next[i] << " ";
+    }
+
+
+    return last;
 }
 
 //UNCOMMENT BEFORE TESTING  AND SUBMISSION!!!
@@ -66,7 +93,7 @@ int main()
 {
     string input = "1 d 1 n 1 c 3 a";
     //getline(cin, input);
-    cout << endl << "insertion output: " << insertionSortDecode(input,0);
+    cout << endl << "insertion output: " << insertionSortDecode(input,3);
 
     //Input parsing disabled for current testing.
     //Store insertion/quick argument in encodingType.
