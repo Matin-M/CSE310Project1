@@ -303,13 +303,8 @@ static string quickSortDecode(string inputString, int index)
 
 int main(int argc, char** argv)
 {
-    //testing
-    //string input = "1 o 1   1 e 1 s 1 o 1 n 1 d 1 E 1 d 1 , 1 t 1 e 2 g 1 n 1 T 1 W 1 H 1   1 I 1   2 h 1 t 1 w 1 h 1   2 a 1   1 h 1 n 1 t 1 c 2 n 2   4 t 1 a 2 h 1 k 1   1 e 1 i 1 O 2 i 1   1 d 1 t 1 n 1 e 2 a 1 r 1 t 2   1 o 2   1 i 1  ";
-    //cout << endl << "Testing Output: " << insertionSortDecode(input,0);
-
-
-    //string encodingType = argv[1];
-    string encodingType = "insertion";
+    //Parse arguments.
+    string encodingType = argv[1];
     int indexInput = 0;
     string paramPass = "";
     int counter = 0;
