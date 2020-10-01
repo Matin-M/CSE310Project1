@@ -19,26 +19,66 @@ static string insertionSortDecode(string inputString, int index)
 {
     //variable declarations used for algorithm.
     string input = inputString;
-    string originalInput = inputString;
     int n = input.length();
     string last = "";
 
-    //Recover Last
-    for(int i = 2; i < n; i+=4)
+    //Recover last v2.
+    int counter = 0;
+    string num = "";
+    for (int i = 0; i < n; i++)
     {
-        for(int j = 0; j<(input[i-2]-48); j++)
-        {
-            last += input[i];
+        if(i==0){
+            num = input[i];
+            int j = 0;
+            for(j = i+1; j < n; j++){
+                if(isdigit(input[j])){
+                    num+=input[j];
+                }else{
+                    break;
+                }
+            }
+            i=j-1;
+
+            for(int x = 0; x < stoi(num); x++){
+                last+=input[i+2];
+            }
         }
+
+        if(input[i] == ' '){
+            counter++;
+        }
+
+        if(counter == 2 && i != n-1){
+            counter = 0;
+            i+=1;
+            num = input[i];
+            int j = 0;
+            for(j = i+1; j < n; j++){
+                if(isdigit(input[j])){
+                    num+=input[j];
+                }else{
+                    break;
+                }
+            }
+            i=j-1;
+
+            for(int x = 0; x < stoi(num); x++){
+                last+=input[i+2];
+            }
+
+        }
+
     }
+
 
     //Store last into an array for easier sorting.
     int lastSize = last.size();
     char firstArray[lastSize];
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < lastSize; i++)
     {
         firstArray[i] = last[i];
     }
+
 
     //Sort last using insertion sort.
     int j;
@@ -160,23 +200,61 @@ static string quickSortDecode(string inputString, int index)
 {
     //variable declarations used for algorithm.
     string input = inputString;
-    string originalInput = inputString;
     int n = input.length();
     string last = "";
 
-    //Recover Last
-    for(int i = 2; i < n; i+=4)
+    //Recover last v2.
+    int counter = 0;
+    string num = "";
+    for (int i = 0; i < n; i++)
     {
-        for(int j = 0; j<(input[i-2]-48); j++)
-        {
-            last += input[i];
+        if(i==0){
+            num = input[i];
+            int j = 0;
+            for(j = i+1; j < n; j++){
+                if(isdigit(input[j])){
+                    num+=input[j];
+                }else{
+                    break;
+                }
+            }
+            i=j-1;
+
+            for(int x = 0; x < stoi(num); x++){
+                last+=input[i+2];
+            }
         }
+
+        if(input[i] == ' '){
+            counter++;
+        }
+
+        if(counter == 2 && i != n-1){
+            counter = 0;
+            i+=1;
+            num = input[i];
+            int j = 0;
+            for(j = i+1; j < n; j++){
+                if(isdigit(input[j])){
+                    num+=input[j];
+                }else{
+                    break;
+                }
+            }
+            i=j-1;
+
+            for(int x = 0; x < stoi(num); x++){
+                last+=input[i+2];
+            }
+
+        }
+
     }
 
     //Store last into an array for easier sorting.
     int lastSize = last.size();
     char firstArray[lastSize];
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < lastSize; i++)
     {
         firstArray[i] = last[i];
     }
@@ -225,34 +303,71 @@ static string quickSortDecode(string inputString, int index)
 
 int main(int argc, char** argv)
 {
-    //Test String.
-    string input = "1 k 1 o 1 a 1 A 1 e 1 s 1 k 1 . 1   2 n 1 e 1 a 1 k 1 n 1 s 2 e 1 c 2 a 3 s 1 t 1 k 5  ";
-    //getline(cin, input);
-    cout << endl << "insertion output: " << quickSortDecode(input,7);
+    //testing
+    //string input = "1 o 1   1 e 1 s 1 o 1 n 1 d 1 E 1 d 1 , 1 t 1 e 2 g 1 n 1 T 1 W 1 H 1   1 I 1   2 h 1 t 1 w 1 h 1   2 a 1   1 h 1 n 1 t 1 c 2 n 2   4 t 1 a 2 h 1 k 1   1 e 1 i 1 O 2 i 1   1 d 1 t 1 n 1 e 2 a 1 r 1 t 2   1 o 2   1 i 1  ";
+    //cout << endl << "Testing Output: " << insertionSortDecode(input,0);
 
-    //Input parsing disabled for current testing.
-    //Store insertion/quick argument in encodingType.
-    /*
-    string encodingType = argv[1];
 
-    if(encodingType.compare("quick") == 0)
+    //string encodingType = argv[1];
+    string encodingType = "insertion";
+    int indexInput = 0;
+    string paramPass = "";
+    int counter = 0;
+
+    if(encodingType.compare("insertion") == 0)
     {
         string input = "";
         while (getline(cin, input)){
+            if (input.length() != 0)
+            {
+                if(counter == 0)
+                {
+                    indexInput = stoi(input);
+                    counter++;
+                }else
+                {
+                    paramPass = input;
+                    counter--;
+                }
 
+                if (counter == 0)
+                {
+                    cout << insertionSortDecode(paramPass, indexInput) << endl;
+                }
+            }else
+            {
+                cout << endl;
+            }
         }
-    }else if (encodingType.compare("insertion") == 0)
+    }else if (encodingType.compare("quick") == 0)
     {
         string input = "";
         while (getline(cin, input)){
+            if (input.length() != 0)
+            {
+                if(counter == 0)
+                {
+                    indexInput = stoi(input);
+                    counter++;
+                }else
+                {
+                    paramPass = input;
+                    counter--;
+                }
 
+                if (counter == 0)
+                {
+                    cout << quickSortDecode(paramPass, indexInput) << endl;
+                }
+            }else
+            {
+                cout << endl;
+            }
         }
     }else
     {
         cout << "Unknown decoding scheme!";
     }
-     */
-
 
 
     return 0;
